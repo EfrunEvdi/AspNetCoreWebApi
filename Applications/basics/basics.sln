@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hello_world_cli", "hello_wo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWebApi", "HelloWebApi\HelloWebApi.csproj", "{E0E55CD4-0DBA-4034-8F92-0FD8957879A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductApp", "ProductApp\ProductApp.csproj", "{E260060E-4352-4A12-AAC9-9783680E6C10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductApp", "ProductApp\ProductApp.csproj", "{E260060E-4352-4A12-AAC9-9783680E6C10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookDemo", "BookDemo\BookDemo.csproj", "{46C2A638-2DE7-4F88-821E-D29746CFFA4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{E260060E-4352-4A12-AAC9-9783680E6C10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E260060E-4352-4A12-AAC9-9783680E6C10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E260060E-4352-4A12-AAC9-9783680E6C10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46C2A638-2DE7-4F88-821E-D29746CFFA4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46C2A638-2DE7-4F88-821E-D29746CFFA4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46C2A638-2DE7-4F88-821E-D29746CFFA4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46C2A638-2DE7-4F88-821E-D29746CFFA4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
