@@ -30,7 +30,7 @@ namespace Services.Contracts
             return book;
         }
 
-        public Book DeleteOneBook(int id, bool trackChanges)
+        public void DeleteOneBook(int id, bool trackChanges)
         {
             // Check entity
             var entity = _manager.Book.GetOneBookById(id, trackChanges);
@@ -53,7 +53,7 @@ namespace Services.Contracts
             return _manager.Book.GetOneBookById(id, trackChanges);
         }
 
-        public Book UpdateOneBook(int id, Book book, bool trackChanges)
+        public void UpdateOneBook(int id, Book book, bool trackChanges)
         {
             // Check entity
             var entity = _manager.Book.GetOneBookById(id, trackChanges);

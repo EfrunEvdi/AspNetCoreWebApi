@@ -1,19 +1,22 @@
 ﻿using Entities.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Repositories.Contracts;
-using Repositories.EFCore;
+using Services.Contracts;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace WebApi.Controllers
+namespace Presentation.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/books")]
     public class BooksController : ControllerBase
     {
-        private readonly IRepositoryManager _manager;
+        private readonly IServiceManager _manager;
 
-        public BooksController(IRepositoryManager manager)
+        public BooksController(IServiceManager manager)
         {
             _manager = manager;
         }
@@ -21,8 +24,16 @@ namespace WebApi.Controllers
         [HttpGet]
         public IActionResult GetAllBook()
         {
-            var books = _manager.Book.GetAllBooks(false);
-            return Ok(books);
+            try
+            {
+                var books = _manager.BookService.GetAllBooks(false);
+                return Ok(books);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
 
         [HttpGet("{id:int}")]
@@ -30,7 +41,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var book = _manager.Book.GetOneBookById(id, false);
+                var book = _manager.BookService.GetOneBookById(id, false);
 
                 if (book is null)
                 {
@@ -55,8 +66,7 @@ namespace WebApi.Controllers
                     return BadRequest(); // 400
                 }
 
-                _manager.Book.CreateOneBook(book);
-                _manager.Save();
+                _manager.BookService.CreateOneBook(book);
 
                 return StatusCode(201, book);
             }
@@ -71,24 +81,14 @@ namespace WebApi.Controllers
         {
             try
             {
-                var entity = _manager.Book.GetOneBookById(id, true);
-
-                if (entity is null)
-                {
-                    return NotFound(); // 404
-                }
-
-                // Check Id
-                if (id != book.Id)
+                if (book is null)
                 {
                     return BadRequest(); // 400
                 }
 
-                entity.Title = book.Title;
-                entity.Price = book.Price;
+                _manager.BookService.UpdateOneBook(id, book, true);
 
-                _manager.Save();
-                return Ok(book);
+                return NoContent(); // 204
             }
             catch (Exception ex)
             {
@@ -102,19 +102,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var entity = _manager.Book.GetOneBookById(id, false);
-
-                if (entity is null)
-                {
-                    return NotFound(new
-                    {
-                        statusCode = 404,
-                        message = $"Book with id:{id} could not found."
-                    }); // 404
-                }
-
-                _manager.Book.DeleteOneBook(entity);
-                _manager.Save();
+                _manager.BookService.DeleteOneBook(id, false);
 
                 return NoContent();
             }
@@ -129,7 +117,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var entity = _manager.Book.GetOneBookById(id, true);
+                var entity = _manager.BookService.GetOneBookById(id, true);
 
                 if (entity is null)
                 {
@@ -137,7 +125,7 @@ namespace WebApi.Controllers
                 }
 
                 bookPatch.ApplyTo(entity);
-                _manager.Book.Update(entity);
+                _manager.BookService.UpdateOneBook(id, entity, true);
 
                 return NoContent(); // 204
             }
@@ -145,7 +133,6 @@ namespace WebApi.Controllers
             {
                 throw new Exception(ex.Message);
             }
-
         }
     }
 }
