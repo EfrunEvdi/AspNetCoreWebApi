@@ -1,0 +1,23 @@
+2024-03-14 23:00:50.1021 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-03-14 23:00:50.1361 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-03-14 23:00:50.1361 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\efrun\source\repos\AspNetCoreWebApi\Applications\bsStoreApp\WebApi\nlog.config
+2024-03-14 23:00:50.1578 Info Configuration initialized.
+2024-03-14 23:09:40.0858 Info Configuration file change detected! Reloading in 1000ms...
+2024-03-14 23:09:41.0890 Info Reloading configuration...
+2024-03-14 23:09:41.1196 Error Exception when loading configuration C:\Users\efrun\source\repos\AspNetCoreWebApi\Applications\bsStoreApp\WebApi\nlog.config Exception: System.Xml.XmlException: Data at the root level is invalid. Line 1, position 1.
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   at System.Xml.XmlTextReaderImpl.ParseRootLevelWhitespace()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlReader.MoveToContent()
+   at NLog.Config.XmlLoggingConfiguration.Initialize(XmlReader reader, String fileName, Boolean ignoreErrors)
+2024-03-14 23:09:41.2010 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Exception when loading configuration C:\Users\efrun\source\repos\AspNetCoreWebApi\Applications\bsStoreApp\WebApi\nlog.config
+ ---> System.Xml.XmlException: Data at the root level is invalid. Line 1, position 1.
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   at System.Xml.XmlTextReaderImpl.ParseRootLevelWhitespace()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlReader.MoveToContent()
+   at NLog.Config.XmlLoggingConfiguration.Initialize(XmlReader reader, String fileName, Boolean ignoreErrors)
+   --- End of inner exception stack trace ---
+2024-03-14 23:09:41.2010 Warn NLog Config Reload() failed. Invalid XML?
